@@ -26,13 +26,13 @@ class Setting extends Model
      *
      * @return string The setting value.
      */
-    public static function get($key)
+    public static function get($key, $default = null)
     {
         $setting = new self();
         $entry = $setting->where('key', $key)->first();
 
         if (!$entry) {
-            return;
+            return $default;
         }
 
         return $entry->value;
